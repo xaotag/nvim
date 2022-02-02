@@ -51,14 +51,12 @@ return require("packer").startup(
     --pairs
     use "windwp/nvim-autopairs"
     use "p00f/nvim-ts-rainbow"
-
     use "mg979/vim-visual-multi"
     -- nvim debuger
     use "mfussenegger/nvim-dap"
     use "theHamsta/nvim-dap-virtual-text"
     use "rcarriga/nvim-dap-ui"
     -- nvim debug go
-    use "leoluz/nvim-dap-go"
     use "ryanoasis/vim-devicons"
     -- auto close tag
     use "windwp/nvim-ts-autotag"
