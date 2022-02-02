@@ -1,18 +1,26 @@
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap =
+    fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+end
+
 return require("packer").startup(
   function(use)
     -- packer
     use "wbthomason/packer.nvim"
     -- lsp
-    use "onsails/lspkind-nvim"
-    use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client
-    use "hrsh7th/nvim-cmp" -- Autocompletion plugin
-    use "hrsh7th/cmp-nvim-lsp" -- LSP source for nvim-cmp
-    use "saadparwaiz1/cmp_luasnip" -- Snippets source for nvim-cmp
-    use "L3MON4D3/LuaSnip" -- Snippets plugin
-    -- lsp install
     use "williamboman/nvim-lsp-installer"
-    -- tree
+    use "neovim/nvim-lspconfig"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-vsnip"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/vim-vsnip"
+
+    use "onsails/lspkind-nvim"
     use "nvim-treesitter/nvim-treesitter"
+    -- tree
     use {
       "kyazdani42/nvim-tree.lua",
       requires = {
@@ -38,6 +46,21 @@ return require("packer").startup(
       requires = {{"nvim-lua/plenary.nvim"}}
     }
     use "mhartington/formatter.nvim"
+    -- 代码片段提示
+    use "rafamadriz/friendly-snippets"
+    --pairs
+    use "windwp/nvim-autopairs"
+    use "p00f/nvim-ts-rainbow"
 
+    use "mg979/vim-visual-multi"
+    -- nvim debuger
+    use "mfussenegger/nvim-dap"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "rcarriga/nvim-dap-ui"
+    -- nvim debug go
+    use "leoluz/nvim-dap-go"
+    use "ryanoasis/vim-devicons"
+    -- auto close tag
+    use "windwp/nvim-ts-autotag"
   end
 )

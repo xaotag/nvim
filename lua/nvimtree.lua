@@ -1,32 +1,32 @@
-require'nvim-tree'.setup {
-  disable_netrw       = true,
-  hijack_netrw        = true,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  auto_close          = false,
-  open_on_tab         = false,
-  hijack_cursor       = false,
-  update_cwd          = false,
-  update_to_buf_dir   = {
+require "nvim-tree".setup {
+  disable_netrw = true,
+  hijack_netrw = true,
+  open_on_setup = false,
+  ignore_ft_on_setup = {},
+  auto_close = true,
+  open_on_tab = false,
+  hijack_cursor = false,
+  update_cwd = false,
+  update_to_buf_dir = {
     enable = true,
-    auto_open = true,
+    auto_open = true
   },
   diagnostics = {
-    enable = false,
+    enable = true,
     icons = {
       hint = "",
       info = "",
       warning = "",
-      error = "",
+      error = ""
     }
   },
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
+    enable = false,
+    update_cwd = false,
     ignore_list = {}
   },
   system_open = {
-    cmd  = nil,
+    cmd = nil,
     args = {}
   },
   filters = {
@@ -36,14 +36,13 @@ require'nvim-tree'.setup {
   git = {
     enable = true,
     ignore = true,
-    timeout = 0,
+    timeout = 0
   },
   view = {
-    width = 20,
-    height = 20,
+    width = 30,
     hide_root_folder = false,
-    side = 'left',
-    auto_resize = true ,
+    side = "left",
+    auto_resize = false,
     mappings = {
       custom_only = false,
       list = {}
