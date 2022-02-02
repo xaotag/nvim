@@ -62,5 +62,7 @@ return require("packer").startup(
     use "ryanoasis/vim-devicons"
     -- auto close tag
     use "windwp/nvim-ts-autotag"
+    -- markdown 预览
+    use {"ellisonleao/glow.nvim"}
   end
 )
