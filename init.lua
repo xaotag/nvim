@@ -22,3 +22,7 @@ require("paisr")
 require("telescop")
 -- 代码调试
 require("debuger")
+-- git diff
+require("gitdiff")
+-- emmet
+require("emmet")

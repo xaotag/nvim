@@ -23,6 +23,8 @@ vim.api.nvim_set_keymap("n", "-", "<C-w>h", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "=", "<C-w>l", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-j>", ":bn<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-k>", ":bp<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "+", ":vertical res+5<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "_", ":vertical res-5<CR>", {noremap = true, silent = true})
 
 --color
 vim.cmd([[colorscheme gruvbox]])
@@ -80,3 +82,10 @@ vim.cmd(
 
 ]]
 )
+-- fcitx5 
+vim.cmd([[
+autocmd InsertLeave * :silent !fcitx5-remote -c " 退出插入模式时禁用输入法
+autocmd BufCreate *  :silent !fcitx5-remote -c " 创建 Buf 时禁用输入法
+autocmd BufEnter *  :silent !fcitx5-remote -c " 进入 Buf 时禁用输入法
+autocmd BufLeave *  :silent !fcitx5-remote -c " 离开 Buf 时禁用输入法
+]])

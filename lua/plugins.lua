@@ -4,6 +4,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap =
     fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
+require("packer").init(
+  {
+    display = {
+      working_sym = ""
+    }
+  }
+)
 
 return require("packer").startup(
   function(use)
@@ -17,6 +24,8 @@ return require("packer").startup(
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/vim-vsnip"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/vim-vsnip-integ"
 
     use "onsails/lspkind-nvim"
     use "nvim-treesitter/nvim-treesitter"
@@ -39,6 +48,8 @@ return require("packer").startup(
       }
       -- tag = 'release' -- To use the latest release
     }
+    --	viewdiff
+    use {"sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim"}
     use {"morhetz/gruvbox"}
     -- use {"maxmellon/vim-jsx-pretty"}
     use {
