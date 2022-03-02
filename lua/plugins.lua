@@ -73,5 +73,13 @@ return require("packer").startup(
     use "windwp/nvim-ts-autotag"
     -- markdown 预览
     use {"ellisonleao/glow.nvim"}
+		use 'shaunsingh/nord.nvim'
+		use {
+			'nvim-lualine/lualine.nvim',
+			requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+		}
+		use 'Mofiqul/dracula.nvim'
+		--lazygit 
+		use 'kdheepak/lazygit.nvim'
   end
 )

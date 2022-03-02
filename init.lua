@@ -26,3 +26,5 @@ require("debuger")
 require("gitdiff")
 -- emmet
 require("emmet")
+--status line 
+require("statusline")

@@ -5,7 +5,6 @@ vim.o.scrolloff = 6
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
-
 vim.cmd([[
 	set encoding=UTF-8
 	set t_Co=256
@@ -25,9 +24,19 @@ vim.api.nvim_set_keymap("n", "<C-j>", ":bn<CR>", {noremap = true, silent = true}
 vim.api.nvim_set_keymap("n", "<C-k>", ":bp<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "+", ":vertical res+5<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "_", ":vertical res-5<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<F2>", ":LspRestart<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-g>", ":LazyGit<CR>", {noremap = true, silent = true})
 
---color
-vim.cmd([[colorscheme gruvbox]])
+
+-- draclua 
+-- show the '~' characters after the end of buffers
+vim.g.dracula_show_end_of_buffer = false
+-- use transparent background
+vim.g.dracula_transparent_bg = true
+-- set custom lualine background color
+vim.g.dracula_lualine_bg_color = ""
+vim.g.dracula_italic_comment = false
+vim.cmd([[ colorscheme dracula]])
 --saga key
 vim.api.nvim_set_keymap("n", "K", ":Lspsaga hover_doc<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "rn", ":Lspsaga rename<CR>", {noremap = true, silent = true})
@@ -52,10 +61,6 @@ augroup END
   true
 )
 
--- no background
-vim.cmd([[
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-]])
 
 -- vim-vsnip
 vim.cmd(
@@ -82,10 +87,11 @@ vim.cmd(
 
 ]]
 )
--- fcitx5 
+--lazygit 
 vim.cmd([[
-autocmd InsertLeave * :silent !fcitx5-remote -c " 退出插入模式时禁用输入法
-autocmd BufCreate *  :silent !fcitx5-remote -c " 创建 Buf 时禁用输入法
-autocmd BufEnter *  :silent !fcitx5-remote -c " 进入 Buf 时禁用输入法
-autocmd BufLeave *  :silent !fcitx5-remote -c " 离开 Buf 时禁用输入法
+let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
+let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
+let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
 ]])
