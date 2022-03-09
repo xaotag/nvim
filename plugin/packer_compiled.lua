@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
   ["cmp-cmdline"] = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
@@ -173,6 +178,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
     url = "https://github.com/theHamsta/nvim-dap-virtual-text"
+  },
+  ["nvim-gomove"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nvim-gomove",
+    url = "https://github.com/booperlv/nvim-gomove"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,

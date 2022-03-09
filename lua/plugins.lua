@@ -4,13 +4,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap =
     fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
-require("packer").init(
-  {
-    display = {
-      working_sym = ""
-    }
-  }
-)
 
 return require("packer").startup(
   function(use)
@@ -23,6 +16,7 @@ return require("packer").startup(
     use "hrsh7th/cmp-vsnip"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-buffer"
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/vim-vsnip-integ"
@@ -50,7 +44,6 @@ return require("packer").startup(
     }
     --	viewdiff
     use {"sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim"}
-    use {"morhetz/gruvbox"}
     -- use {"maxmellon/vim-jsx-pretty"}
     use {
       "nvim-telescope/telescope.nvim",
@@ -73,13 +66,17 @@ return require("packer").startup(
     use "windwp/nvim-ts-autotag"
     -- markdown 预览
     use {"ellisonleao/glow.nvim"}
+		--lazygit 
+		use 'kdheepak/lazygit.nvim'
+		--代码块移动
+		use 'booperlv/nvim-gomove'
+		-- 主题
 		use 'shaunsingh/nord.nvim'
 		use {
 			'nvim-lualine/lualine.nvim',
 			requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 		}
 		use 'Mofiqul/dracula.nvim'
-		--lazygit 
-		use 'kdheepak/lazygit.nvim'
+    use {"morhetz/gruvbox"}
   end
 )

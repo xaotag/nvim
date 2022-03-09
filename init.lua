@@ -28,3 +28,5 @@ require("gitdiff")
 require("emmet")
 --status line 
 require("statusline")
+-- 代码移动
+require('codemove')
