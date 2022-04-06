@@ -10,17 +10,16 @@ return require("packer").startup(
     -- packer
     use "wbthomason/packer.nvim"
     -- lsp
-    use "williamboman/nvim-lsp-installer"
-    use "neovim/nvim-lspconfig"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-vsnip"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/vim-vsnip"
-    use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/vim-vsnip-integ"
-
+    use {"williamboman/nvim-lsp-installer"}
+    use {"neovim/nvim-lspconfig"}
+    use {"hrsh7th/cmp-path"}
+    use {"hrsh7th/cmp-vsnip"}
+    use {"hrsh7th/cmp-nvim-lsp"}
+    use {"hrsh7th/nvim-cmp"}
+    use {"hrsh7th/cmp-buffer"}
+    use {"hrsh7th/vim-vsnip"}
+    use {"hrsh7th/cmp-cmdline"}
+    use {"hrsh7th/vim-vsnip-integ"}
     use "onsails/lspkind-nvim"
     use "nvim-treesitter/nvim-treesitter"
     -- tree
@@ -78,5 +77,11 @@ return require("packer").startup(
 		}
 		use 'Mofiqul/dracula.nvim'
     use {"morhetz/gruvbox"}
+		-- Lua
+		use {
+			"folke/trouble.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+		}
+		use 'folke/tokyonight.nvim'
   end
 )

@@ -30,17 +30,24 @@ vim.api.nvim_set_keymap("n", "+", ":vertical res+5<CR>", {noremap = true, silent
 vim.api.nvim_set_keymap("n", "_", ":vertical res-5<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<F2>", ":LspRestart<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-g>", ":LazyGit<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Space>w", ":TroubleToggle<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<enter>", ":noh<CR>", {noremap = true, silent = true})
 
 
--- draclua 
--- show the '~' characters after the end of buffers
-vim.g.dracula_show_end_of_buffer = false
--- use transparent background
-vim.g.dracula_transparent_bg = true
--- set custom lualine background color
-vim.g.dracula_lualine_bg_color = ""
-vim.g.dracula_italic_comment = false
-vim.cmd([[ colorscheme dracula]])
+-- -- dracula
+-- -- show the '~' characters after the end of buffers
+-- vim.g.dracula_show_end_of_buffer = false
+-- -- use transparent background
+-- vim.g.dracula_transparent_bg = true
+-- -- set custom lualine background color
+-- vim.g.dracula_lualine_bg_color = ""
+-- vim.g.dracula_italic_comment = false
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
+vim.g.tokyonight_colors = {
+	bg_float = "none"
+}
+vim.cmd([[ colorscheme tokyonight]])
 --saga key
 vim.api.nvim_set_keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>rn", ":Lspsaga rename<CR>", {noremap = true, silent = true})
@@ -48,6 +55,7 @@ vim.api.nvim_set_keymap("n", "gd", ":Lspsaga preview_definition<CR>", {noremap =
 vim.api.nvim_set_keymap("n", "[e", ":Lspsaga diagnostic_jump_next<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "ca", ":Lspsaga code_action<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>h", ":Lspsaga show_line_diagnostics<CR>", {noremap = true, silent = true})
 
 --saga terminal
 vim.cmd([[ nnoremap <silent> tr :Lspsaga open_floaterm<CR>]])
@@ -86,7 +94,7 @@ vim.cmd(
 	nnoremap <silent> <space>dl :lua require'dap'.run_last()<CR>
 ]]
 )
---lazygit 
+--lazygit
 vim.cmd([[
 	let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 	let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
@@ -100,3 +108,20 @@ vim.cmd([[
 vim.cmd([[
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact set suffixesadd+=.ts,.tsx
 ]])
+--gopls
+lspconfig = require "lspconfig"
+ util = require "lspconfig/util"
+
+ lspconfig.gopls.setup {
+   cmd = {"gopls", "serve"},
+   filetypes = {"go", "gomod"},
+   root_dir = util.root_pattern("go.work", "go.mod"),
+   settings = {
+     gopls = {
+       analyses = {
+         unusedparams = true,
+       },
+       staticcheck = true,
+     },
+   },
+ }

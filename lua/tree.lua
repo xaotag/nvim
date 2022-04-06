@@ -1,10 +1,11 @@
 require "nvim-treesitter.configs".setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   sync_install = false,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true
   },
+	ignore_install = { "phpdoc" },
   rainbow = {
     enable = true,
     extended_mode = true,

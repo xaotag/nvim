@@ -30,3 +30,5 @@ require("emmet")
 require("statusline")
 -- 代码移动
 require('codemove')
+-- lsp-ui
+require("lsp-ui-trouble")
