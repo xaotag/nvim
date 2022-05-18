@@ -6,22 +6,25 @@ vim.o.scrolloff = 6
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
-vim.o.wrap= false
+vim.o.wrap = false
 vim.cmd([[
 	set encoding=UTF-8
 	set t_Co=256
 ]])
 
 -- mykey
+-- LuaFormatter off
 vim.api.nvim_set_keymap("n", "W", ":w<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "Q", ":q<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<space>e", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "ff", "<cmd>Telescope find_files<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "fg", "<cmd>Telescope live_grep<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "fg", ":lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "er", "<cmd>Telescope diagnostics<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "mk", "<cmd>Telescope marks<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "fb", "<cmd>Telescope buffers<cr>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>dV", ":DiffviewOpen<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>dC", ":DiffviewClose<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "-", "<C-w>h", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "=", "<C-w>l", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-j>", ":bn<CR>", {noremap = true, silent = true})
@@ -32,7 +35,9 @@ vim.api.nvim_set_keymap("n", "<F2>", ":LspRestart<CR>", {noremap = true, silent 
 vim.api.nvim_set_keymap("n", "<C-g>", ":LazyGit<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Space>w", ":TroubleToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<enter>", ":noh<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
 
+-- LuaFormatter on
 
 -- -- dracula
 -- -- show the '~' characters after the end of buffers
@@ -49,6 +54,10 @@ vim.g.tokyonight_colors = {
 }
 vim.cmd([[ colorscheme tokyonight]])
 --saga key
+vim.g.tokyonight_colors = {bg_float = "none"}
+vim.cmd([[ colorscheme tokyonight]])
+-- saga key
+-- LuaFormatter off
 vim.api.nvim_set_keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>rn", ":Lspsaga rename<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gd", ":Lspsaga preview_definition<CR>", {noremap = true, silent = true})
@@ -57,10 +66,6 @@ vim.api.nvim_set_keymap("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", {noremap
 vim.api.nvim_set_keymap("n", "ca", ":Lspsaga code_action<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>h", ":Lspsaga show_line_diagnostics<CR>", {noremap = true, silent = true})
 
---saga terminal
-vim.cmd([[ nnoremap <silent> tr :Lspsaga open_floaterm<CR>]])
-vim.cmd([[ nnoremap <silent> tl  <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR> ]])
-vim.cmd([[ tnoremap <silent> tr <C-\><C-n>:Lspsaga close_floaterm<CR> ]])
 
 -- format
 vim.api.nvim_exec(
@@ -72,6 +77,7 @@ augroup END
 ]],
   true)
 
+-- LuaFormatter on
 
 -- vim-vsnip
 vim.cmd([[
@@ -81,8 +87,7 @@ vim.cmd([[
 ]])
 
 -- debuger
-vim.cmd(
-[[
+vim.cmd([[
 	nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
 	nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
 	nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
@@ -92,9 +97,8 @@ vim.cmd(
 	nnoremap <silent> <space>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 	nnoremap <silent> <space>dr :lua require'dap'.repl.open()<CR>
 	nnoremap <silent> <space>dl :lua require'dap'.run_last()<CR>
-]]
-)
---lazygit
+]])
+-- lazygit
 vim.cmd([[
 	let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 	let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
@@ -103,25 +107,17 @@ vim.cmd([[
 	let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
 ]])
 
-
---suffix
+-- suffix
 vim.cmd([[
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact set suffixesadd+=.ts,.tsx
 ]])
---gopls
-lspconfig = require "lspconfig"
- util = require "lspconfig/util"
 
- lspconfig.gopls.setup {
-   cmd = {"gopls", "serve"},
-   filetypes = {"go", "gomod"},
-   root_dir = util.root_pattern("go.work", "go.mod"),
-   settings = {
-     gopls = {
-       analyses = {
-         unusedparams = true,
-       },
-       staticcheck = true,
-     },
-   },
- }
+vim.cmd([[
+	augroup remember_folds
+		autocmd!
+		autocmd BufWinLeave *.* mkview
+		autocmd BufWinEnter *.* silent! loadview
+	augroup END
+]])
+
+

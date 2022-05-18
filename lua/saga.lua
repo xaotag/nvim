@@ -14,7 +14,7 @@ lspsaga.setup { -- defaults ...
     enable = true,
     sign = true,
     sign_priority = 40,
-    virtual_text = true,
+    virtual_text = true
   },
   finder_definition_icon = "  ",
   finder_reference_icon = "  ",
@@ -25,19 +25,13 @@ lspsaga.setup { -- defaults ...
     split = "i",
     quit = "q",
     scroll_down = "<C-f>",
-    scroll_up = "<C-b>",
+    scroll_up = "<C-b>"
   },
-  code_action_keys = {
-    quit = "q",
-    exec = "<CR>",
-  },
-  rename_action_keys = {
-    quit = "<C-c>",
-    exec = "<CR>",
-  },
+  code_action_keys = {quit = "q", exec = "<CR>"},
+  rename_action_keys = {quit = "<C-c>", exec = "<CR>"},
   definition_preview_icon = "  ",
   border_style = "single",
   rename_prompt_prefix = "➤",
   server_filetype_map = {},
-  diagnostic_prefix_format = "%d. ",
+  diagnostic_prefix_format = "%d. "
 }

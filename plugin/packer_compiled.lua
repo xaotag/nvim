@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -163,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-commaround"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/nvim-commaround",
+    url = "https://github.com/gennaro-tedesco/nvim-commaround"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -230,6 +240,16 @@ _G.packer_plugins = {
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["schemastore.nvim"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
+    url = "https://github.com/b0o/schemastore.nvim"
+  },
+  ["telescope-live-grep-raw.nvim"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/telescope-live-grep-raw.nvim",
+    url = "https://github.com/nvim-telescope/telescope-live-grep-raw.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -239,11 +259,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
-  },
-  ["trouble.nvim"] = {
-    loaded = true,
-    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/trouble.nvim",
-    url = "https://github.com/folke/trouble.nvim"
   },
   ["vim-devicons"] = {
     loaded = true,
