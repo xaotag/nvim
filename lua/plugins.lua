@@ -28,8 +28,7 @@ return require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = {
       "kyazdani42/nvim-web-devicons" -- optional, for file icon
-    },
-    config = function() require"nvim-tree".setup {} end
+    }
   }
   use {"tami5/lspsaga.nvim"}
   -- git
@@ -70,10 +69,7 @@ return require("packer").startup(function(use)
   use 'booperlv/nvim-gomove'
   -- 主题
   use 'shaunsingh/nord.nvim'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
+  use {'nvim-lualine/lualine.nvim'}
   use 'Mofiqul/dracula.nvim'
   use {"morhetz/gruvbox"}
   -- Lua
@@ -84,6 +80,7 @@ return require("packer").startup(function(use)
   use {"gennaro-tedesco/nvim-commaround"}
   -- html change tag
   use 'AndrewRadev/tagalong.vim'
-  -- code run 
+  -- code run
   use {'michaelb/sniprun', run = 'bash ./install.sh'}
+
 end)
