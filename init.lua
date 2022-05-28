@@ -4,6 +4,8 @@ require("plugins")
 require('servers')
 -- 自动补全
 require("auto")
+-- 文件树
+require("nvimtree")
 -- 配置文件(杂项)
 require("dotfile")
 -- treesitter 代码高亮
@@ -12,8 +14,6 @@ require("tree")
 require("saga")
 -- suip run
 require("runcode")
--- 文件树
-require("nvimtree")
 -- git 插件
 require("ngit")
 -- 代码美化
