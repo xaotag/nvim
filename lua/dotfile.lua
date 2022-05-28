@@ -11,7 +11,7 @@ vim.cmd([[
 	set encoding=UTF-8
 	set t_Co=256
 ]])
-
+local opts = {noremap = true, silent = true}
 -- mykey
 -- LuaFormatter off
 vim.api.nvim_set_keymap("n", "W", ":w<CR>", {noremap = true, silent = true})
@@ -33,9 +33,9 @@ vim.api.nvim_set_keymap("n", "+", ":vertical res+5<CR>", {noremap = true, silent
 vim.api.nvim_set_keymap("n", "_", ":vertical res-5<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<F2>", ":LspRestart<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-g>", ":LazyGit<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<Space>w", ":TroubleToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<enter>", ":noh<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
 
 -- LuaFormatter on
 
@@ -49,14 +49,12 @@ vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", {nor
 -- vim.g.dracula_italic_comment = false
 vim.g.tokyonight_transparent = true
 vim.g.tokyonight_transparent_sidebar = true
-vim.g.tokyonight_colors = {
-	bg_float = "none"
-}
-vim.cmd([[ colorscheme tokyonight]])
---saga key
 vim.g.tokyonight_colors = {bg_float = "none"}
 vim.cmd([[ colorscheme tokyonight]])
 -- saga key
+vim.g.tokyonight_colors = {bg_float = "none"}
+vim.cmd([[ colorscheme tokyonight]])
+-- lspsaga key
 -- LuaFormatter off
 vim.api.nvim_set_keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>rn", ":Lspsaga rename<CR>", {noremap = true, silent = true})
@@ -89,7 +87,7 @@ vim.cmd([[
 -- debuger
 vim.cmd([[
 	nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-	nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+  nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
 	nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
 	nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
 	nnoremap <silent> <space>b :lua require'dap'.toggle_breakpoint()<CR>
@@ -119,5 +117,3 @@ vim.cmd([[
 		autocmd BufWinEnter *.* silent! loadview
 	augroup END
 ]])
-
-

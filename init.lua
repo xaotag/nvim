@@ -1,5 +1,7 @@
 -- 插件管理
 require("plugins")
+-- servers
+require('servers')
 -- 自动补全
 require("auto")
 -- 配置文件(杂项)
@@ -8,6 +10,8 @@ require("dotfile")
 require("tree")
 -- lspsaga 代码操作
 require("saga")
+-- suip run
+require("runcode")
 -- 文件树
 require("nvimtree")
 -- git 插件
@@ -30,5 +34,3 @@ require("statusline")
 require('codemove')
 -- null-ls.nivm
 require('null_ls')
--- servers
-require('servers')

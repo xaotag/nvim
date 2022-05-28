@@ -4,7 +4,6 @@ local mySource = require('null_ls.source')
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
-  debug = false,
   sources = mySource,
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

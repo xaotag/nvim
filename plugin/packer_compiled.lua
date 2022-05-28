@@ -245,6 +245,16 @@ _G.packer_plugins = {
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
     url = "https://github.com/b0o/schemastore.nvim"
   },
+  sniprun = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/sniprun",
+    url = "https://github.com/michaelb/sniprun"
+  },
+  ["tagalong.vim"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/tagalong.vim",
+    url = "https://github.com/AndrewRadev/tagalong.vim"
+  },
   ["telescope-live-grep-raw.nvim"] = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/telescope-live-grep-raw.nvim",

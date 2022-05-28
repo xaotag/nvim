@@ -30,8 +30,8 @@ lspsaga.setup { -- defaults ...
   code_action_keys = {quit = "q", exec = "<CR>"},
   rename_action_keys = {quit = "<C-c>", exec = "<CR>"},
   definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
+  border_style = "round",
+  rename_prompt_prefix = "",
   server_filetype_map = {},
   diagnostic_prefix_format = "%d. "
 }

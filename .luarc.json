@@ -1,15 +1,15 @@
 {
-    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "Lua.diagnostics.disable": [
-        "redefined-local",
-        "lowercase-global",
-        "unused-local",
-        "deprecated"
-    ],
-    "Lua.diagnostics.globals": [
-        "dap",
-        "chadtree_settings",
-        "cmp",
-        "vim"
-    ]
+	"$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+	"Lua.diagnostics.disable": [
+		"redefined-local",
+		"lowercase-global",
+		"unused-local",
+		"deprecated"
+	],
+	"Lua.diagnostics.globals": [
+		"dap",
+		"chadtree_settings",
+		"cmp",
+		"vim"
+	]
 }

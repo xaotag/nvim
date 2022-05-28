@@ -15,8 +15,11 @@ local settings = {ensure_installed = servers}
 for _, lsp in ipairs(servers) do
   opts = {capabilities = capabilities}
   if lsp == 'jsonls' then
-    local jsonls_opts = require "servers.jsonls"
+    local jsonls_opts = require "servers.lsp.jsonls"
     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+  elseif lsp == 'gopls' then
+    local gopls_opts = require "servers.lsp.gopls"
+    opts = vim.tbl_deep_extend("force", gopls_opts, opts)
   end
-  lspconfig[lsp].setup(opts)
+  lspconfig[lsp].setup({opts = opts})
 end

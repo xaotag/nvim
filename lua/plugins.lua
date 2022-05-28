@@ -1,11 +1,12 @@
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({
-    "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
+    'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
     install_path
   })
 end
+
 return require("packer").startup(function(use)
   -- packer
   use "wbthomason/packer.nvim"
@@ -30,7 +31,7 @@ return require("packer").startup(function(use)
     },
     config = function() require"nvim-tree".setup {} end
   }
-  use {"tami5/lspsaga.nvim", branch = "nvim6.0"}
+  use {"tami5/lspsaga.nvim"}
   -- git
   use {
     "lewis6991/gitsigns.nvim",
@@ -81,4 +82,8 @@ return require("packer").startup(function(use)
   use "b0o/schemastore.nvim"
   -- 注释
   use {"gennaro-tedesco/nvim-commaround"}
+  -- html change tag
+  use 'AndrewRadev/tagalong.vim'
+  -- code run 
+  use {'michaelb/sniprun', run = 'bash ./install.sh'}
 end)
