@@ -5,18 +5,18 @@ local diagnostics = null_ls.builtins.diagnostics
 -- LuaFormatter off
 M.sources = {
 	formatting.prettier.with({
-		filetypes = { "html","json","yaml","markdown","css","scss","less" },
+		filetypes = { "html", "json", "yaml", "markdown", "css", "scss", "less" },
 	}),
 	formatting.deno_fmt.with({
-		extra_args= {"--options-use-tabs"}
+		extra_args = { "--options-use-tabs" }
 	}),
 	formatting.lua_format.with({
-		extra_args={"--indent-width","2"}
+		extra_args = { "--indent-width", "2" }
 	}),
 	formatting.gofmt.with({
-		  filetypes = { "go" },
+		filetypes = { "go" },
 	}),
---	diagnostics.eslint
+	diagnostics.eslint
 }
 
 -- LuaFormatter on

@@ -1,5 +1,5 @@
 local null_ls = require("null-ls")
-local mySource = require('null_ls.source')
+local mySource = require('null_ls.sources')
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 

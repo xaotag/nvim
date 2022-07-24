@@ -4,14 +4,14 @@ require("plugins")
 require('servers')
 -- 自动补全
 require("auto")
+-- lspsaga 代码操作
+require("saga")
 -- 文件树
 require("nvimtree")
 -- 配置文件(杂项)
 require("dotfile")
 -- treesitter 代码高亮
 require("tree")
--- lspsaga 代码操作
-require("saga")
 -- suip run
 require("runcode")
 -- git 插件
@@ -34,3 +34,5 @@ require("statusline")
 require('codemove')
 -- null-ls.nivm
 require('null_ls')
+-- 主题
+require('themes')

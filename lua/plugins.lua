@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
       "kyazdani42/nvim-web-devicons" -- optional, for file icon
     }
   }
-  use {"tami5/lspsaga.nvim"}
+  use({"glepnir/lspsaga.nvim", branch = "main"})
   -- git
   use {
     "lewis6991/gitsigns.nvim",

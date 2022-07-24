@@ -6,7 +6,7 @@ local lsp_installer = require("nvim-lsp-installer")
 
 local servers = {
   "cssls", "cssmodules_ls", "emmet_ls", "html", "jsonls", "sumneko_lua",
-  "tsserver", "pyright", "gopls", "yamlls", "dockerls", "phpactor"
+  "tsserver", "pyright", "gopls", "yamlls", "dockerls"
 }
 
 lsp_installer.setup(servers)
