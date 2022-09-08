@@ -109,11 +109,6 @@ _G.packer_plugins = {
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
-  ["formatter.nvim"] = {
-    loaded = true,
-    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/formatter.nvim",
-    url = "https://github.com/mhartington/formatter.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -268,6 +263,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aiden/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/aiden/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,

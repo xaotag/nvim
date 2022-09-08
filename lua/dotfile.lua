@@ -51,15 +51,6 @@ vim.api.nvim_set_keymap("n", "ca", ":Lspsaga code_action<CR>", { noremap = true,
 vim.api.nvim_set_keymap("n", "<leader>h", ":Lspsaga show_line_diagnostics<CR>", { noremap = true, silent = true })
 
 
--- format
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.scss,*.css,*.js,*.ts,*.jsx,*.tsx,*.lua,*.html,*.go FormatWrite
-augroup END
-]],
-	true)
 
 -- LuaFormatter on
 

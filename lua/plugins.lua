@@ -46,7 +46,6 @@ return require("packer").startup(function(use)
       {"nvim-lua/plenary.nvim"}, {'nvim-telescope/telescope-live-grep-raw.nvim'}
     }
   }
-  use "mhartington/formatter.nvim"
   -- 代码片段提示
   use "rafamadriz/friendly-snippets"
   -- pairs
@@ -82,5 +81,6 @@ return require("packer").startup(function(use)
   use 'AndrewRadev/tagalong.vim'
   -- code run
   use {'michaelb/sniprun', run = 'bash ./install.sh'}
+  use {"akinsho/toggleterm.nvim", tag = '*'}
 
 end)

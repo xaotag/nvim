@@ -11,7 +11,7 @@ require("nvimtree")
 -- 配置文件(杂项)
 require("dotfile")
 -- treesitter 代码高亮
-require("tree")
+require("treesitter")
 -- suip run
 require("runcode")
 -- git 插件
@@ -36,3 +36,5 @@ require('codemove')
 require('null_ls')
 -- 主题
 require('themes')
+-- term
+require('term')

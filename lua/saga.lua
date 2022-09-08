@@ -1,9 +1,5 @@
 local saga = require('lspsaga')
-saga.init_lsp_saga({
-  diagnostic_header = {" ", " ", " ", "ﴞ "},
-  -- show diagnostic source
-  show_diagnostic_source = true
-})
+saga.init_lsp_saga({diagnostic_header = {" ", " ", " ", "ﴞ "}})
 
 local signs = {
   Error = " ",
