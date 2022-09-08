@@ -10,6 +10,8 @@
 		"dap",
 		"chadtree_settings",
 		"cmp",
-		"vim"
+		"vim",
+		"left",
+		"init_options"
 	]
 }

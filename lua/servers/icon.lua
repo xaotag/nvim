@@ -6,12 +6,12 @@
 return {
   kind = {
     Text = "",
-    -- Method = "m",
-    -- Function = "",
-    -- Constructor = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
+    Method = "m",
+    Function = "",
+    Constructor = "",
+    --   Method = "",
+    --   Function = "",
+    --   Constructor = "",
     Field = "",
     -- Variable = "",
     Variable = "",

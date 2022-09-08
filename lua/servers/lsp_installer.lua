@@ -1,25 +1,34 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-local lspconfig = require("lspconfig")
-
-local lsp_installer = require("nvim-lsp-installer")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lsp_config = require("lspconfig")
+require("mason").setup()
+require("mason-lspconfig").setup()
+local mason_lspconfig = require("mason-lspconfig")
 
 local servers = {
-  "cssls", "cssmodules_ls", "emmet_ls", "html", "jsonls", "sumneko_lua",
-  "tsserver", "pyright", "gopls", "yamlls", "dockerls"
+  "cssls", "html", "cssmodules_ls", "lua_ls", "tsserver", "gopls", "yamlls",
+  "jdtls", "pyright", "jsonls"
 }
-
-lsp_installer.setup(servers)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 local opts = {}
-local settings = {ensure_installed = servers}
-for _, lsp in ipairs(servers) do
+for _, server in pairs(servers) do
   opts = {capabilities = capabilities}
-  if lsp == 'jsonls' then
-    local jsonls_opts = require "servers.lsp.jsonls"
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  elseif lsp == 'gopls' then
-    local gopls_opts = require "servers.lsp.gopls"
-    opts = vim.tbl_deep_extend("force", gopls_opts, opts)
+  if server == "jsonls" then
+    local jsonls = require "servers.lsp.jsonls"
+    opts = vim.tbl_deep_extend("force", jsonls, opts)
+  elseif server == "cssls" then
+    local cssls = require "servers.lsp.cssls"
+    opts = vim.tbl_deep_extend("force", cssls, opts)
+  elseif server == "yamlls" then
+    local yamlls = require "servers.lsp.yamlls"
+    opts = vim.tbl_deep_extend("force", yamlls, opts)
+  elseif server == "tsserver" then
+    local tsserver = require "servers.lsp.tsserver"
+    opts = vim.tbl_deep_extend("force", tsserver, opts)
+  elseif server == "gopls" then
+    local gopls = require "servers.lsp.gopls"
+    opts = vim.tbl_deep_extend("force", gopls, opts)
   end
-  lspconfig[lsp].setup({opts = opts})
+  require('lspconfig')[server].setup(opts)
 end
+require('servers.lsp.ls_emmet')

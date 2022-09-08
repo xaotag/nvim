@@ -1,5 +1,5 @@
 vim.cmd([[
-noremap <space>r :call CompileRunGcc()<CR>
+noremap <leader>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -29,8 +29,30 @@ func! CompileRunGcc()
 	elseif &filetype == 'python'
 		set splitbelow
 		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'markdown'
+		exec "InstantMarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'dart'
+		exec "CocCommand flutter.run -d ".g:flutter_default_device." ".g:flutter_run_args
+		silent! exec "CocCommand flutter.dev.openDevLog"
+	elseif &filetype == 'javascript'
+		set splitbelow
+		:sp
+		:term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+	elseif &filetype == 'racket'
+		set splitbelow
+		:sp
+		:res -5
+		term racket %
 	elseif &filetype == 'go'
-		:!go run .
+		set splitbelow
+		:sp
+		:term go run .
 	endif
 endfunc
 ]])
