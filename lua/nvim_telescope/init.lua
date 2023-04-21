@@ -10,3 +10,4 @@ require('telescope').setup {
     find_files = {find_command = {"fd", "--type", "f", "--strip-cwd-prefix"}}
   }
 }
+require('lua.nvim_telescope.pickers.custom_command').setup {}

@@ -8,6 +8,7 @@ return {
   {"nvim-treesitter/nvim-treesitter"}, -- tree
   {
     "kyazdani42/nvim-tree.lua",
+    comment = "59bcb01d3bf58b810b9c48db56e558f3857110ad",
     dependencies = {
       "kyazdani42/nvim-web-devicons" -- optional, for file icon
     }
@@ -37,7 +38,5 @@ return {
   {"gennaro-tedesco/nvim-commaround"}, -- html change tag
   'AndrewRadev/tagalong.vim', -- code run
   'ray-x/go.nvim', 'ray-x/guihua.lua', -- recommanded if need floating window support
-  {"NTBBloodbath/rest.nvim", dependencies = {"nvim-lua/plenary.nvim"}},
-  'williamboman/mason-lspconfig.nvim', 'pedro757/emmet'
-
+  {"NTBBloodbath/rest.nvim", dependencies = {"nvim-lua/plenary.nvim"}}
 }

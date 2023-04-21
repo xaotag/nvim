@@ -1,7 +1,12 @@
 local saga = require('lspsaga')
 saga.setup({
   symbol_in_winbar = {enable = false},
-  ui = {border = 'single', colors = {normal_bg = 'NONE'}, title = false}
+  ui = {
+    code_action = '',
+    border = 'single',
+    colors = {normal_bg = 'NONE'},
+    title = false
+  }
 })
 
 local signs = {

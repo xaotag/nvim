@@ -1,6 +1,5 @@
 -- 插件管理
--- require("plugins")
-require("plugins.lazy")
+require("plugins")
 -- servers
 require('servers')
 -- 自动补全

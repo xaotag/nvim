@@ -6,9 +6,8 @@ local mason_lspconfig = require("mason-lspconfig")
 
 local servers = {
   "cssls", "html", "cssmodules_ls", "lua_ls", "tsserver", "gopls", "yamlls",
-  "jdtls", "pyright", "jsonls"
+  "jdtls", "pyright", "jsonls", "rust_analyzer"
 }
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local opts = {}
 for _, server in pairs(servers) do

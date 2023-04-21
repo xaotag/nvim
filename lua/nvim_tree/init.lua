@@ -1,16 +1,16 @@
-local function custom_callback(callback_name)
-  return string.format(":lua require('nvim_tree.treeutils').%s()<CR>",
-                       callback_name)
-end
-require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
-  --  renderer = {icons = {glyphs = {git = {untracked = ""}}}},
-  view = {
-    mappings = {
-      list = {
-        {key = "<c-f>", cb = custom_callback "launch_find_files"},
-        {key = "<c-g>", cb = custom_callback "launch_live_grep"}
-      }
-    }
+require'nvim-tree'.setup {
+  update_focused_file = {enable = true, update_cwd = true},
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = true,
+    debounce_delay = 50,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR
+    },
+    icons = {hint = "", info = "", warning = "", error = ""}
   },
-  update_focused_file = {enable = true, update_root = true, ignore_list = {}}
-} -- END_DEFAULT_OPTS
+
+  git = {enable = true, timeout = 500}
+}
