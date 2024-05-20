@@ -1,1 +1,1 @@
-return {init_options = {camelCase = 'dashes'}}
+return { init_options = { camelCase = "dashes" } }

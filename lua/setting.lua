@@ -8,8 +8,8 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.wrap = false
 vim.o.cursorline = true
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldenable = false
 vim.o.foldlevel = 99
 vim.cmd([[
@@ -17,17 +17,17 @@ vim.cmd([[
 	set t_Co=256
 	set termguicolors
 ]])
-local opts = {noremap = true, silent = true}
--- mykey
--- LuaFormatter off
+-- Enable inlay hints
+vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = nil }))
+
+local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 keymap("n", "W", ":w<CR>", opts)
 keymap("n", "Q", ":q<CR>", opts)
 keymap("n", "<space>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "ff", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-keymap("n", "fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-	opts)
+keymap("n", "fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap("n", "er", "<cmd>Telescope diagnostics<CR>", opts)
 keymap("n", "mk", "<cmd>Telescope marks<CR>", opts)
 keymap("n", "fb", "<cmd>Telescope buffers<cr>", opts)
@@ -42,8 +42,8 @@ keymap("n", "_", ":vertical res-5<CR>", opts)
 keymap("n", "<F9>", ":LspRestart<CR>", opts)
 keymap("n", "<C-g>", ":LazyGit<CR>", opts)
 keymap("n", "<enter>", ":noh<CR>", opts)
-keymap('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-keymap('n', '<leader>rh', '<cmd>lua require("rest-nvim").run()<CR>', opts)
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "<leader>rh", '<cmd>lua require("rest-nvim").run()<CR>', opts)
 --Lspsaga
 keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", opts)
 keymap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)

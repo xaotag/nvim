@@ -1,7 +1,7 @@
 -- 插件管理
 require("plugins")
 -- servers
-require('servers')
+require("servers")
 -- 自动补全
 require("nvim-cmp")
 -- lspsaga 代码操作
@@ -25,14 +25,14 @@ require("debuger")
 -- status line
 require("statusline")
 -- 代码移动
-require('codemove')
+require("codemove")
 -- null-ls.nivm
-require('null_ls')
+require("null_ls")
 -- 主题
-require('themes')
+require("themes")
 -- nvim_go
-require('nvim_go')
+require("nvim_go")
 -- http client
-require("rest")
+-- require("rest")
 -- run code
 require("runcode")

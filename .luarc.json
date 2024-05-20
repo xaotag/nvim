@@ -4,7 +4,8 @@
 		"redefined-local",
 		"lowercase-global",
 		"unused-local",
-		"deprecated"
+		"deprecated",
+		"unused-function"
 	],
 	"Lua.diagnostics.globals": [
 		"dap",
@@ -12,6 +13,7 @@
 		"cmp",
 		"vim",
 		"left",
-		"init_options"
+		"init_options",
+		"null_ls"
 	]
 }
