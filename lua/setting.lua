@@ -12,6 +12,7 @@ vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldenable = false
 vim.o.foldlevel = 99
+vim.o.autochdir = true
 vim.cmd([[
 	set encoding=UTF-8
 	set t_Co=256
@@ -24,7 +25,7 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 keymap("n", "W", ":w<CR>", opts)
 keymap("n", "Q", ":q<CR>", opts)
-keymap("n", "<space>e", ":NvimTreeToggle<CR>", opts)
+--keymap("n", "<space>e", "<cmd>Yazi<CR>", opts)
 keymap("n", "ff", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 keymap("n", "fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)

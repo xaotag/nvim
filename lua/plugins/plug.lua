@@ -7,6 +7,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
+			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/cmp-nvim-lsp",
@@ -18,7 +19,6 @@ return {
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter" }, -- tree
-	{ "kyazdani42/nvim-tree.lua" },
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
@@ -49,7 +49,12 @@ return {
 	"ellisonleao/glow.nvim", -- lazygit
 	"kdheepak/lazygit.nvim", -- 代码块移动
 	"booperlv/nvim-gomove", -- 主题
-	"nvim-lualine/lualine.nvim",
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
 	"folke/tokyonight.nvim", -- Lua
 	"b0o/schemastore.nvim", -- 注释
 	"gennaro-tedesco/nvim-commaround", -- html change tag
@@ -59,5 +64,5 @@ return {
 	"nvimdev/lspsaga.nvim",
 	"rafamadriz/friendly-snippets", -- pairs
 	"windwp/nvim-autopairs",
-	{ "folke/neodev.nvim", opts = {} },
+	"folke/neodev.nvim",
 }

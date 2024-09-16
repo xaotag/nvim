@@ -1,4 +1,3 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp_config = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -9,7 +8,7 @@ local servers = {
 	"html",
 	"cssmodules_ls",
 	"lua_ls",
-	"tsserver",
+	"ts_ls",
 	"gopls",
 	"yamlls",
 	"jdtls",
@@ -17,8 +16,8 @@ local servers = {
 	"jsonls",
 	"rust_analyzer",
 }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 local opts = {}
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, server in pairs(servers) do
 	opts = {
 		capabilities = capabilities,
@@ -32,12 +31,12 @@ for _, server in pairs(servers) do
 	elseif server == "yamlls" then
 		local yamlls = require("servers.lsp.yamlls")
 		opts = vim.tbl_deep_extend("force", yamlls, opts)
-	elseif server == "tsserver" then
-		local tsserver = require("servers.lsp.tsserver")
-		opts = vim.tbl_deep_extend("force", tsserver, opts)
-	elseif server == "lua_ls" then
-		local lua_ls = require("servers.lsp.lua_server")
-		opts = vim.tbl_deep_extend("force", lua_ls, opts)
+	elseif server == "ts_ls" then
+		local ts_ls = require("servers.lsp.ts_ls")
+		opts = vim.tbl_deep_extend("force", ts_ls, opts)
+		--	elseif server == "lua_ls" then
+		--		local lua_ls = require("servers.lsp.lua_server")
+		--		opts = vim.tbl_deep_extend("force", lua_ls, opts)
 	elseif server == "gopls" then
 		local gopls = require("servers.lsp.gopls")
 		opts = vim.tbl_deep_extend("force", gopls, opts)

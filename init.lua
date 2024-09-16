@@ -1,13 +1,11 @@
 -- 插件管理
-require("plugins")
+require("config.lazy")
 -- servers
 require("servers")
 -- 自动补全
-require("nvim-cmp")
+require("nvim_cmp")
 -- lspsaga 代码操作
-require("saga")
--- 文件树
-require("nvim_tree")
+require("lsp_saga")
 -- 配置文件(杂项)
 require("setting")
 -- treesitter 代码高亮

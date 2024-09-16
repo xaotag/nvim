@@ -1,9 +1,9 @@
 return {
-	filetypes = { "lua" },
+	filetypes = "lua",
 	settings = {
 		Lua = {
 			hint = {
-				enable = true, -- necessary
+				enable = true,
 			},
 		},
 	},
