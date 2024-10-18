@@ -15,14 +15,9 @@ return {
 			"hrsh7th/vim-vsnip",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/vim-vsnip-integ",
-			"onsails/lspkind-nvim",
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter" }, -- tree
-	{
-		"lewis6991/gitsigns.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
-	}, --  {"maxmellon/vim-jsx-pretty"}
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -39,22 +34,11 @@ return {
 			"nvim-neotest/nvim-nio",
 		},
 	},
-	{
-		"nvimtools/none-ls.nvim",
-		event = "VeryLazy",
-		requires = { "nvim-lua/plenary.nvim" },
-	},
 	"ryanoasis/vim-devicons", -- auto close tag
 	"windwp/nvim-ts-autotag", -- markdown 预览
 	"ellisonleao/glow.nvim", -- lazygit
 	"kdheepak/lazygit.nvim", -- 代码块移动
 	"booperlv/nvim-gomove", -- 主题
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
 	"folke/tokyonight.nvim", -- Lua
 	"b0o/schemastore.nvim", -- 注释
 	"gennaro-tedesco/nvim-commaround", -- html change tag
@@ -64,5 +48,4 @@ return {
 	"nvimdev/lspsaga.nvim",
 	"rafamadriz/friendly-snippets", -- pairs
 	"windwp/nvim-autopairs",
-	"folke/neodev.nvim",
 }
