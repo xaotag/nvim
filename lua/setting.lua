@@ -1,18 +1,15 @@
 -- my config
+-- vim.g.have_nerd_font = true
 vim.g.mapleader = " "
 vim.o.number = true
 vim.o.rnu = true
+vim.o.autochdir = true
 vim.o.scrolloff = 6
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.wrap = false
-vim.o.cursorline = true
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.foldenable = false
-vim.o.foldlevel = 99
-vim.o.autochdir = true
+vim.o.termguicolors = true
 vim.cmd([[
 	set encoding=UTF-8
 	set t_Co=256
@@ -43,18 +40,9 @@ keymap("n", "_", ":vertical res-5<CR>", opts)
 keymap("n", "<F9>", ":LspRestart<CR>", opts)
 keymap("n", "<C-g>", ":LazyGit<CR>", opts)
 keymap("n", "<enter>", ":noh<CR>", opts)
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "<leader>rh", '<cmd>lua require("rest-nvim").run()<CR>', opts)
---Lspsaga
-keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", opts)
-keymap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
-keymap("n", "gd", ":Lspsaga peek_definition<CR>", opts)
-keymap("n", "[e", ":Lspsaga diagnostic_jump_next<CR>", opts)
-keymap("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap("n", "ca", ":Lspsaga code_action<CR>", opts)
-keymap("n", "<leader>h", ":Lspsaga show_line_diagnostics<CR>", opts)
-keymap({ "n", "t" }, "<leader>t", "<cmd>Lspsaga term_toggle<CR>", opts)
-
+keymap("n", "]e", vim.diagnostic.goto_next)
+keymap("n", "[e", vim.diagnostic.goto_prev)
 -- LuaFormatter on
 
 -- vim-vsnip
@@ -78,12 +66,15 @@ vim.cmd([[
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact set suffixesadd+=.ts,.tsx
 ]])
 
--- vim.cmd([[
---	augroup remember_folds
---		autocmd!
---		autocmd BufWinLeave *.* mkview
---		autocmd BufWinEnter *.* silent! loadview
---	augroup END
--- ]])
 -- 修复旗帜
--- vim.api.nvim_command("call setcellwidths([[0x1f1e6, 0x1f1ff, 1]])")
+
+local signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = " ",
+}
+
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
