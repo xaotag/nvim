@@ -43,18 +43,9 @@ keymap("n", "_", ":vertical res-5<CR>", opts)
 keymap("n", "<F9>", ":LspRestart<CR>", opts)
 keymap("n", "<C-g>", ":LazyGit<CR>", opts)
 keymap("n", "<enter>", ":noh<CR>", opts)
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "<leader>rh", '<cmd>lua require("rest-nvim").run()<CR>', opts)
---Lspsaga
-keymap("n", "<leader>k", ":Lspsaga hover_doc<CR>", opts)
-keymap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
-keymap("n", "gd", ":Lspsaga peek_definition<CR>", opts)
-keymap("n", "[e", ":Lspsaga diagnostic_jump_next<CR>", opts)
-keymap("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap("n", "ca", ":Lspsaga code_action<CR>", opts)
-keymap("n", "<leader>h", ":Lspsaga show_line_diagnostics<CR>", opts)
-keymap({ "n", "t" }, "<leader>t", "<cmd>Lspsaga term_toggle<CR>", opts)
-
+keymap("n", "]e", vim.diagnostic.goto_next)
+keymap("n", "[e", vim.diagnostic.goto_prev)
 -- LuaFormatter on
 
 -- vim-vsnip
@@ -86,4 +77,15 @@ autocmd FileType javascript,javascriptreact,typescript,typescriptreact set suffi
 --	augroup END
 -- ]])
 -- 修复旗帜
--- vim.api.nvim_command("call setcellwidths([[0x1f1e6, 0x1f1ff, 1]])")
+vim.api.nvim_command("call setcellwidths([[0x1f1e6, 0x1f1ff, 1]])")
+
+local signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = " ",
+}
+
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
