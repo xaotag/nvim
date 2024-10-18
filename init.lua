@@ -1,36 +1,14 @@
 -- 插件管理
 require("config.lazy")
--- servers
-require("servers")
--- 自动补全
-require("nvim_cmp")
--- lspsaga 代码操作
-require("lsp_saga")
 -- 配置文件(杂项)
 require("setting")
--- treesitter 代码高亮
+-- treesitter
 require("treesitter")
--- git 插件
-require("nvim_gitsigns")
--- 代码美化
-require("kind")
--- 括号
-require("pairs")
 -- telescope
-require("nvim-telescope")
--- 代码调试
-require("debuger")
--- status line
-require("statusline")
+require("nvim_telescope")
 -- 代码移动
 require("codemove")
--- null-ls.nivm
-require("null_ls")
 -- 主题
 require("themes")
--- nvim_go
-require("nvim_go")
--- http client
--- require("rest")
--- run code
-require("runcode")
+-- fold
+require("fold")
