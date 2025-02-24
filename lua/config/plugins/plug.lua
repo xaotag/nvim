@@ -4,13 +4,6 @@ return {
 	"nvim-treesitter/nvim-treesitter", -- tree
 	"neovim/nvim-lspconfig",
 	"onsails/lspkind.nvim",
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-telescope/telescope-live-grep-args.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-	}, -- 代码片段提示
 	"mg979/vim-visual-multi", -- nvim debuger
 	{
 		"mfussenegger/nvim-dap",
@@ -22,8 +15,7 @@ return {
 	},
 	"ryanoasis/vim-devicons", -- auto close tag
 	"windwp/nvim-ts-autotag", -- markdown 预览
-	"ellisonleao/glow.nvim", -- lazygit
-	"kdheepak/lazygit.nvim", -- 代码块移动
+	"ellisonleao/glow.nvim", -- glow
 	"booperlv/nvim-gomove", -- 主题
 	"folke/tokyonight.nvim", -- Lua
 	"b0o/schemastore.nvim", -- 注释
