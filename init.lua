@@ -4,11 +4,5 @@ require("config.lazy")
 require("setting")
 -- treesitter
 require("treesitter")
--- telescope
-require("nvim_telescope")
 -- 代码移动
 require("codemove")
--- 主题
-require("themes")
--- fold
-require("fold")

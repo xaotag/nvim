@@ -1,6 +1,7 @@
 return {
 	{
 		"mikavilpas/yazi.nvim",
+		dependencies = { "folke/snacks.nvim", "MagicDuck/grug-far.nvim" },
 		event = "VeryLazy",
 		keys = {
 			{
@@ -8,11 +9,14 @@ return {
 				function()
 					require("yazi").yazi(nil, vim.fn.getcwd())
 				end,
-				desc = "Open the file manager in nvim's working directory",
 			},
 		},
 		opts = {
 			open_for_directories = false,
+			integrations = {
+				grep_in_directory = "snacks.picker",
+				grep_in_selected_files = "snacks.picker",
+			},
 		},
 	},
 }
