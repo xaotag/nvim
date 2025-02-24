@@ -22,8 +22,7 @@ return {
 	},
 	"ryanoasis/vim-devicons", -- auto close tag
 	"windwp/nvim-ts-autotag", -- markdown 预览
-	"ellisonleao/glow.nvim", -- lazygit
-	"kdheepak/lazygit.nvim", -- 代码块移动
+	"ellisonleao/glow.nvim", -- glow
 	"booperlv/nvim-gomove", -- 主题
 	"folke/tokyonight.nvim", -- Lua
 	"b0o/schemastore.nvim", -- 注释
