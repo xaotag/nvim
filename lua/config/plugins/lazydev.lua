@@ -4,7 +4,7 @@ return {
 	ft = "lua",
 	opts = {
 		library = {
-			{ path = "lua/vim", words = { "vim%." } },
+			{ path = "lua/vim", words = { "vim%.uv" } },
 		},
 	},
 }
