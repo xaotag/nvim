@@ -1,25 +1,32 @@
 return {
-	"stevearc/conform.nvim",
-	config = function()
-		require("conform").setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-				-- Conform will run multiple formatters sequentially
-				python = { "isort", "black" },
-				-- You can customize some of the format options for the filetype (:help conform.format)
-				rust = { "rustfmt", lsp_format = "fallback" },
-				-- Conform will run the first available formatter
-				javascript = { "biome" },
-				typescript = { "biome" },
-				typescriptreact = { "biome" },
-				json = { "biome" },
-			},
-		})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*",
-			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
-			end,
-		})
-	end,
+  "stevearc/conform.nvim",
+  config = function()
+    require("conform").setup({
+      formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform will run multiple formatters sequentially
+        python = { "isort", "black" },
+        -- You can customize some of the format options for the filetype (:help conform.format)
+        rust = { "rustfmt", lsp_format = "fallback" },
+        -- Conform will run the first available formatter
+        javascript = { "deno_fmt" },
+        typescript = { "deno_fmt" },
+        typescriptreact = { "deno_fmt" },
+        json = { "deno_fmt" },
+        jsonc = { "deno_fmt" },
+        yaml = { "deno_fmt" },
+      },
+      formatters = {
+        stylua = {
+          prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+        },
+      },
+    })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*",
+      callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+      end,
+    })
+  end,
 }
