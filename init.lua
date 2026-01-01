@@ -6,5 +6,3 @@ require("setting")
 require("treesitter")
 -- 代码移动
 require("codemove")
--- 服务启动
-require("custom/lsp")
