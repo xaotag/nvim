@@ -5,25 +5,32 @@ return {
 			capabilities = require("blink.cmp").get_lsp_capabilities(),
 		})
 		-- LSP, 启动!
-		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("emmylua_ls")
+		vim.lsp.enable("vtsls")
+		vim.lsp.enable("html")
+		vim.lsp.enable("emmet_language_server")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("pyright")
-		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("clangd")
 		vim.lsp.enable("rust_analyzer")
 
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*.ts,*.tsx",
+			-- 调用 vtsls 提供的专有命令（比 code_action 更快更直接）
+			callback = function()
+				vim.lsp.buf.execute_command({
+					command = "typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+				})
+			end,
+		})
 		-- Define LSP-related keymaps
+		--
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				local bufnr = event.buf
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-				-- 禁用 ts_ls 的格式化（让 conform 接管）
-				if client and client.name == "ts_ls" then
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
-				end
 
 				-- 通用键位（buffer-local）
 				local map = function(mode, lhs, rhs, desc)
@@ -34,7 +41,7 @@ return {
 				map("n", "gr", vim.lsp.buf.references, "References")
 				map("n", "gi", vim.lsp.buf.implementation, "Implementation")
 				map("n", "gD", vim.lsp.buf.declaration, "Declaration")
-				map("n", "K", vim.lsp.buf.hover, "Hover")
+				map("n", "<leader>k", vim.lsp.buf.hover, "Hover")
 				map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
 				map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
 

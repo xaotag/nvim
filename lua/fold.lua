@@ -1,7 +1,7 @@
 vim.o.foldenable = true
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
 --vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = -1

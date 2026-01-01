@@ -1,24 +1,21 @@
 return {
 	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
-		dependencies = "rafamadriz/friendly-snippets",
-		config = function()
-			local luasnip = require("luasnip")
-			luasnip.filetype_extend("typescript", { "javascript" })
-			luasnip.filetype_extend("typescriptreact", { "javascript" })
-			luasnip.filetype_extend("typescriptreact", { "javascript", "html" })
-			luasnip.filetype_extend("python", { "python" })
-			require("luasnip/loaders/from_vscode").load({ include = { "javascript", "html" } })
-			require("luasnip/loaders/from_vscode").lazy_load()
-		end,
-	},
-	{
 		"saghen/blink.cmp",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"echasnovski/mini.snippets", -- 新增这个
+		},
 		event = { "InsertEnter", "CmdlineEnter" },
 		version = "1.*",
 		config = function()
+			require("mini.snippets").setup({
+				visual = {
+					enabled = false,
+				},
+				snippets = {
+					require("mini.snippets").gen_loader.from_lang(),
+				},
+			})
 			require("blink-cmp").setup({
 				appearance = {
 					nerd_font_variant = "normal",
@@ -43,11 +40,7 @@ return {
 								kind_icon = {
 									ellipsis = false,
 									text = function(ctx)
-										if ctx.item.kind_name == "llm" then
-											return "🪄"
-										else
-											return ctx.kind_icon
-										end
+										return ctx.kind_icon
 									end,
 
 									-- Optionally, you may also use the highlights from mini.icons
@@ -65,6 +58,7 @@ return {
 					trigger = {
 						show_on_keyword = true, -- 输入关键字时自动触发
 						prefetch_on_insert = true, -- 预加载补全项
+						show_in_snippet = false,
 					},
 					documentation = {
 						auto_show = true, -- 选中项时自动显示文档
@@ -72,28 +66,29 @@ return {
 					},
 				},
 				keymap = {
-					preset = "none",
-					["<C-e>"] = { "show", "show_documentation", "hide_documentation" },
+					preset = "enter",
+					["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 					["<CR>"] = { "accept", "fallback" },
-					["<Tab>"] = { "show", "select_next", "snippet_forward", "fallback" },
-					["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+					["<Tab>"] = {
+						"select_next",
+						"snippet_forward",
+						"fallback",
+					},
+					["<S-Tab>"] = {
+						"select_prev",
+						"snippet_backward",
+						"fallback",
+					},
 					["<C-b>"] = { "scroll_documentation_up", "fallback" },
 					["<C-f>"] = { "scroll_documentation_down", "fallback" },
 					["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 				},
 				snippets = {
-					preset = "luasnip",
+					preset = "mini_snippets",
 				},
 				sources = {
-					default = { "lazydev", "lsp", "path", "snippets", "snippets", "buffer", "llm" },
+					default = { "lazydev", "lsp", "path", "snippets", "snippets", "buffer" },
 					providers = {
-						llm = {
-							name = "llm",
-							module = "llm.common.completion.frontends.blink",
-							timeout_ms = 10000,
-							score_offset = 100,
-							async = true,
-						},
 						lazydev = {
 							name = "LazyDev",
 							module = "lazydev.integrations.blink",

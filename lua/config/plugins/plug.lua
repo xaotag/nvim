@@ -1,7 +1,6 @@
 return {
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	"nvim-treesitter/nvim-treesitter", -- tree
 	"mg979/vim-visual-multi", -- nvim debuger
 	{
 		"mfussenegger/nvim-dap",
@@ -16,6 +15,5 @@ return {
 	"b0o/schemastore.nvim",
 	"gennaro-tedesco/nvim-commaround",
 	"AndrewRadev/tagalong.vim",
-	"ray-x/go.nvim",
 	"ray-x/guihua.lua",
 }
