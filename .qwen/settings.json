@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(neovim.io)"
+    ]
+  },
+  "$version": 3
+}
