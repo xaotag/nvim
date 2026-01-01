@@ -17,7 +17,7 @@ return {
 	{
 		"saghen/blink.cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
-		build = "cargo build --release" or nil,
+		version = "1.*",
 		config = function()
 			require("blink-cmp").setup({
 				appearance = {
@@ -25,7 +25,6 @@ return {
 					use_nvim_cmp_as_default = true,
 				},
 				completion = {
-
 					ghost_text = {
 						enabled = true,
 						show_with_menu = true,
@@ -37,7 +36,7 @@ return {
 						},
 					},
 					menu = {
-						auto_show = false,
+						auto_show = true,
 						draw = {
 							treesitter = { "lsp" },
 							components = {
