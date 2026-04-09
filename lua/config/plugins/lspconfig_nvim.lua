@@ -96,14 +96,14 @@ return {
         end, "Toggle Diagnostics")
 
         -- Inlay hints toggle
-        if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           map("n", "<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
           end, "Toggle Inlay Hints")
         end
 
         -- Document highlight（光标下词高亮）
-        if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
@@ -118,7 +118,7 @@ return {
         end
 
         -- Folding（可选，性能敏感项目慎用）
-        if client.supports_method("textDocument/foldingRange") then
+        if client:supports_method("textDocument/foldingRange") then
           vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
           vim.wo.foldmethod = "expr"
           vim.wo.foldlevel = 99 -- 默认展开
