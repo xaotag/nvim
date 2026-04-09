@@ -33,13 +33,17 @@ vim.lsp.inlay_hint.enable(true)
 local border = "rounded"
 
 -- LSP 悬停文档和签名帮助的边框
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = border,
-})
+vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+  config = config or {}
+  config.border = config.border or border
+  return vim.lsp.handlers.hover(_, result, ctx, config)
+end
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = border,
-})
+vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config)
+  config = config or {}
+  config.border = config.border or border
+  return vim.lsp.handlers.signature_help(_, result, ctx, config)
+end
 
 -- 诊断浮动窗口的边框
 vim.diagnostic.config({
