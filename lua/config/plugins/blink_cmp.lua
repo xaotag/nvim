@@ -93,7 +93,7 @@ return {
           preset = "mini_snippets",
         },
         sources = {
-          default = { "minuet", "lazydev", "lsp", "path", "snippets", "snippets", "buffer" },
+          default = { "lazydev", "lsp", "path", "snippets", "snippets", "buffer" },
           providers = {
             lazydev = {
               name = "LazyDev",

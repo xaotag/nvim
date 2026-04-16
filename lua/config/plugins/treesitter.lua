@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   build = ":TSUpdate",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -7,8 +8,7 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = {
+require('nvim-treesitter').install({ 
         "rust",
         "lua",
         "vim",
