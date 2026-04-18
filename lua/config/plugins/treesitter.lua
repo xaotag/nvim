@@ -1,21 +1,44 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = "main",
+  lazy = false,
   build = ":TSUpdate",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context",
     "windwp/nvim-ts-autotag",
   },
   config = function()
-require('nvim-treesitter').install({ 
-        "rust",
+    -- 基础配置
+    require("nvim-treesitter").setup({})
+
+    -- 安装解析器
+    require("nvim-treesitter").install({
+      "rust",
+      "lua",
+      "vim",
+      "toml",
+      "bash",
+      "c",
+      "cpp",
+      "go",
+      "python",
+      "javascript",
+      "typescript",
+      "tsx",
+      "html",
+      "css",
+      "json",
+      "yaml",
+      "markdown",
+      "markdown_inline",
+      "regex",
+    })
+
+    -- Treesitter 高亮 (Neovim 内置)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
         "lua",
         "vim",
-        "toml",
-        "bash",
-        "c",
-        "cpp",
+        "rust",
         "go",
         "python",
         "javascript",
@@ -26,48 +49,72 @@ require('nvim-treesitter').install({
         "json",
         "yaml",
         "markdown",
-        "markdown_inline",
-        "regex",
+        "toml",
+        "bash",
+        "c",
+        "cpp",
       },
-      auto_install = true, -- 自动安装缺失的解析器
-      highlight = {
-        enable = true, -- 开启高亮
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true }, -- 智能缩进
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>", -- 回车开启选中
-          node_incremental = "<CR>", -- 增加选中范围
-          node_decremental = "<BS>", -- 减少选中范围
-        },
-      },
-      -- 自动闭合标签
-      autotag = {
-        enable = true,
-        filetypes = { "html", "xml", "tsx", "jsx", "vue", "svelte" },
-      },
-      -- 文本对象增强
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-        },
-        move = {
-          enable = true,
-          set_jumps = true,
-        },
-        swap = {
-          enable = true,
-        },
-      },
+      callback = function(args)
+        vim.treesitter.start(args.buf)
+      end,
     })
 
-    -- 禁用顶部上下文预览，改用状态栏导航
-    require("treesitter-context").setup({
-      enable = false,
+    -- Treesitter 折叠 (Neovim 内置)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "lua",
+        "vim",
+        "rust",
+        "go",
+        "python",
+        "javascript",
+        "typescript",
+        "tsx",
+        "html",
+        "css",
+        "json",
+        "yaml",
+        "markdown",
+        "toml",
+        "bash",
+        "c",
+        "cpp",
+      },
+      callback = function()
+        vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo[0].foldmethod = "expr"
+        vim.wo[0].foldlevel = 99
+      end,
     })
+
+    -- Treesitter 缩进 (实验性)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "lua",
+        "vim",
+        "rust",
+        "go",
+        "python",
+        "javascript",
+        "typescript",
+        "tsx",
+        "html",
+        "css",
+        "json",
+        "yaml",
+        "toml",
+        "bash",
+        "c",
+        "cpp",
+      },
+      callback = function(args)
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+
+    -- Neovim 0.12 Treesitter 增量选择 (replace = true 强制覆盖)
+    vim.keymap.set({ "x", "o" }, "<CR>", "an", { desc = "Treesitter 增量选择外层" })
+    vim.keymap.set({ "x", "o" }, "<BS>", "in", { desc = "Treesitter 增量选择内层" })
 
     -- 彩虹括号颜色
     vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#e67e80" })
@@ -78,34 +125,31 @@ require('nvim-treesitter').install({
     vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#d699b6" })
     vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#83c092" })
 
-    -- 重复移动功能（类似 ; 和 ,）
+    -- 重复移动功能
     local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
     vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
     vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 
-    -- 使用 move 模块的跳转函数
+    -- 移动跳转
     local ts_move = require("nvim-treesitter-textobjects.move")
-    local move_maps = {
+    for _, item in ipairs({
       { next = "]f", prev = "[f", query = "@function.outer", name = "function" },
       { next = "]c", prev = "[c", query = "@class.outer", name = "class" },
       { next = "]b", prev = "[b", query = "@block.outer", name = "block" },
       { next = "]l", prev = "[l", query = "@loop.outer", name = "loop" },
       { next = "]i", prev = "[i", query = "@conditional.outer", name = "conditional" },
-    }
-
-    for _, item in ipairs(move_maps) do
+    }) do
       vim.keymap.set({ "n", "x", "o" }, item.next, function()
         ts_move.goto_next_start(item.query, "textobjects")
       end, { desc = "Goto next " .. item.name })
-
       vim.keymap.set({ "n", "x", "o" }, item.prev, function()
         ts_move.goto_previous_start(item.query, "textobjects")
       end, { desc = "Goto previous " .. item.name })
     end
 
-    -- 手动配置 textobjects 选择快捷键
+    -- textobjects 选择
     local ts_select = require("nvim-treesitter-textobjects.select")
-    local textobjects_list = {
+    for _, obj in ipairs({
       { key = "af", query = "@function.outer" },
       { key = "if", query = "@function.inner" },
       { key = "ac", query = "@class.outer" },
@@ -118,9 +162,7 @@ require('nvim-treesitter').install({
       { key = "ii", query = "@conditional.inner" },
       { key = "ap", query = "@parameter.outer" },
       { key = "ip", query = "@parameter.inner" },
-    }
-
-    for _, obj in ipairs(textobjects_list) do
+    }) do
       vim.keymap.set({ "x", "o" }, obj.key, function()
         ts_select.select_textobject(obj.query, "textobjects")
       end, { desc = "Select " .. obj.query })

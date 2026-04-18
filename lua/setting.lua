@@ -1,20 +1,6 @@
--- my config
--- vim.g.have_nerd_font = true
+-- Neovim 0.12 配置
 
--- 启用 Neovim 0.12 ui2 (实验性) - 替代传统消息/命令行界面
-pcall(function()
-  require("vim._core.ui2").enable({
-    enable = true,
-    msg = {
-      targets = "cmd", -- 默认在 cmdline 显示消息
-      cmd = { height = 0.5 }, -- cmdline 最大高度
-      dialog = { height = 0.5 }, -- 对话框最大高度
-      msg = { height = 0.5, timeout = 4000 }, -- 消息窗口高度和超时
-      pager = { height = 1 }, -- 分页器最大高度
-    },
-  })
-end)
-
+vim.opt.shortmess:append("Ic")
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -27,19 +13,21 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.termguicolors = true
 vim.opt.expandtab = true
+vim.opt.cmdheight = 0
+vim.opt.shortmess:append("cI")
+
+-- Neovim 0.12: 启用 inlay hints
 vim.lsp.inlay_hint.enable(true)
+
+-- Neovim 0.12: 补全菜单边框
+vim.opt.pumborder = "rounded"
+vim.opt.completeopt = "menu,menuone,noselect"
 
 -- 全局 UI 边框配置
 local border = "rounded"
 
--- LSP 悬停文档和签名帮助的边框
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = border,
-})
+-- Neovim 0.12: 在 lspconfig 中配置 handlers
+-- 移除了 vim.lsp.with() (deprecated)
 
 -- 诊断浮动窗口的边框
 vim.diagnostic.config({
@@ -72,7 +60,6 @@ map("_", "<cmd>vertical resize -5<CR>", "减少窗口宽度")
 map("<F9>", "<cmd>LspRestart<CR>", "重启LSP")
 -- 清除搜索高亮
 map("<enter>", "<cmd>noh<CR>", "清除搜索高亮")
--- LuaFormatter on
 
 -- vim-vsnip
 vim.g.vsnip_filetypes = {}
@@ -95,7 +82,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- 修复旗帜
+-- 诊断旗帜
 vim.diagnostic.config({
   signs = {
     text = {
@@ -106,3 +93,6 @@ vim.diagnostic.config({
     },
   },
 })
+
+-- Neovim 0.12: 启用 ui2 (实验性 UI)
+pcall(require, "vim._core.ui2")

@@ -1,10 +1,32 @@
 return {
   "neovim/nvim-lspconfig",
   config = function()
+    local border = "rounded"
     local lsp_attach_group = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
     local lsp_inlay_group = vim.api.nvim_create_augroup("lsp-inlay-hints", { clear = true })
     local ts_organize_group = vim.api.nvim_create_augroup("ts-organize-imports", { clear = true })
 
+    -- Neovim 0.12: 配置 hover 和 signature help 边框 (使用 handlers)
+    local function hover_handler(_, result, ctx)
+      if result then
+        vim.lsp.handlers.hover(_, result, ctx)
+      end
+    end
+
+    local function signature_handler(_, result, ctx)
+      if result then
+        vim.lsp.handlers.signature_help(_, result, ctx)
+      end
+    end
+
+    vim.lsp.config("*", {
+      handlers = {
+        ["textDocument/hover"] = hover_handler,
+        ["textDocument/signatureHelp"] = signature_handler,
+      },
+    })
+
+    -- Inlay hints on attach
     vim.api.nvim_create_autocmd("LspAttach", {
       group = lsp_inlay_group,
       callback = function(args)
@@ -15,14 +37,12 @@ return {
       end,
     })
 
-    vim.lsp.config("*", {
-      capabilities = require("blink.cmp").get_lsp_capabilities(),
-    })
-    -- LSP, 启动!
+    -- LSP 启动
     for _, server in ipairs({ "emmylua_ls", "vtsls", "html", "emmet_language_server", "gopls", "pyright", "clangd", "jsonls" }) do
       vim.lsp.enable(server)
     end
 
+    -- JSON schema 配置
     vim.lsp.config.jsonls = {
       settings = {
         json = {
@@ -38,12 +58,11 @@ return {
         },
       },
     }
-    -- rust-analyzer 由 rustaceanvim 管理，无需手动启用
 
+    -- TypeScript 保存时自动整理 imports
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = ts_organize_group,
       pattern = { "*.ts", "*.tsx" },
-      -- 调用 vtsls 提供的专有命令（比 code_action 更快更直接）
       callback = function(args)
         vim.lsp.buf.execute_command({
           command = "typescript.organizeImports",
@@ -51,8 +70,8 @@ return {
         })
       end,
     })
-    -- Define LSP-related keymaps
-    --
+
+    -- LspAttach 键位
     vim.api.nvim_create_autocmd("LspAttach", {
       group = lsp_attach_group,
       callback = function(event)
@@ -62,37 +81,36 @@ return {
           return
         end
 
-        -- 通用键位（buffer-local）
         local map = function(mode, lhs, rhs, desc)
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
         end
 
-        -- 以下跳转键由 Snacks Picker 提供
-        -- map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
-        -- map("n", "gr", vim.lsp.buf.references, "References")
-        -- map("n", "gi", vim.lsp.buf.implementation, "Implementation")
-        -- map("n", "gD", vim.lsp.buf.declaration, "Declaration")
+        -- Neovim 0.12: 内置 LSP 键位 (grt, grx)
+        -- 自定义键位
         map("n", "<leader>k", vim.lsp.buf.hover, "Hover")
         map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
 
-        -- Diagnostics
-        map("n", "[e", vim.diagnostic.goto_prev, "Prev Diagnostic")
-        map("n", "]e", vim.diagnostic.goto_next, "Next Diagnostic")
+        -- Diagnostics - Neovim 0.12: 使用 vim.diagnostic.jump()
+        map("n", "[e", function()
+          vim.diagnostic.jump({ count = -1, float = true })
+        end, "Prev Diagnostic")
+        map("n", "]e", function()
+          vim.diagnostic.jump({ count = 1, float = true })
+        end, "Next Diagnostic")
         map("n", "<leader>ld", function()
           vim.diagnostic.open_float({ source = true })
         end, "Show Diagnostic")
 
         -- Toggle diagnostics
-        local diag_status = true
+        local diag_enabled = true
         map("n", "<leader>td", function()
-          diag_status = not diag_status
-          vim.diagnostic.config({
-            underline = diag_status,
-            virtual_text = diag_status,
-            signs = diag_status,
-            update_in_insert = diag_status,
-          })
+          diag_enabled = not diag_enabled
+          if diag_enabled then
+            vim.diagnostic.enable()
+          else
+            vim.diagnostic.disable()
+          end
         end, "Toggle Diagnostics")
 
         -- Inlay hints toggle
@@ -102,7 +120,7 @@ return {
           end, "Toggle Inlay Hints")
         end
 
-        -- Document highlight（光标下词高亮）
+        -- Document highlight
         if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -117,11 +135,11 @@ return {
           })
         end
 
-        -- Folding（可选，性能敏感项目慎用）
+        -- Folding
         if client.supports_method("textDocument/foldingRange") then
           vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
           vim.wo.foldmethod = "expr"
-          vim.wo.foldlevel = 99 -- 默认展开
+          vim.wo.foldlevel = 99
         end
       end,
     })

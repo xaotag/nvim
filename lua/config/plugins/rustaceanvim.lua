@@ -82,18 +82,18 @@ return {
             },
             -- 类型提示增强
             inlayHints = {
-              bindingModeHints = { enable = true },
+              bindingModeHints = { enable = false }, -- 除非你在研究模式匹配，否则不需要
               chainingHints = { enable = true },
-              closureCaptureHints = { enable = true },
-              closureReturnTypeHints = { enable = "always" },
-              closingBraceHints = { enable = true, minLines = 25 },
-              discriminantHints = { enable = "always" },
-              expressionAdjustmentHints = { enable = "always" },
-              lifetimeElisionHints = { enable = "always", useParameterNames = true },
+              closureCaptureHints = { enable = false },
+              closureReturnTypeHints = { enable = "never" },
+              closingBraceHints = { enable = true }, -- 如果你需要，可以保持 25+，但建议关掉
+              discriminantHints = { enable = "never" },
+              expressionAdjustmentHints = { enable = "never" },
+              lifetimeElisionHints = { enable = "never" },
               parameterHints = { enable = true },
-              rangeExclusiveHints = { enable = true },
+              rangeExclusiveHints = { enable = false },
               renderColons = true,
-              typeHints = { enable = true, hideClosureInitialization = false },
+              typeHints = { enable = true, hideClosureInitialization = true }, -- 开启后，变量类型清晰很多
             },
             -- 代码诊断增强
             diagnostics = {
