@@ -112,10 +112,6 @@ return {
       end,
     })
 
-    -- Neovim 0.12 Treesitter 增量选择 (replace = true 强制覆盖)
-    vim.keymap.set({ "x", "o" }, "<CR>", "an", { desc = "Treesitter 增量选择外层" })
-    vim.keymap.set({ "x", "o" }, "<BS>", "in", { desc = "Treesitter 增量选择内层" })
-
     -- 彩虹括号颜色
     vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#e67e80" })
     vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#dbbc7f" })
@@ -148,24 +144,24 @@ return {
     end
 
     -- textobjects 选择
-    local ts_select = require("nvim-treesitter-textobjects.select")
-    for _, obj in ipairs({
-      { key = "af", query = "@function.outer" },
-      { key = "if", query = "@function.inner" },
-      { key = "ac", query = "@class.outer" },
-      { key = "ic", query = "@class.inner" },
-      { key = "ab", query = "@block.outer" },
-      { key = "ib", query = "@block.inner" },
-      { key = "al", query = "@loop.outer" },
-      { key = "il", query = "@loop.inner" },
-      { key = "ai", query = "@conditional.outer" },
-      { key = "ii", query = "@conditional.inner" },
-      { key = "ap", query = "@parameter.outer" },
-      { key = "ip", query = "@parameter.inner" },
-    }) do
-      vim.keymap.set({ "x", "o" }, obj.key, function()
-        ts_select.select_textobject(obj.query, "textobjects")
-      end, { desc = "Select " .. obj.query })
-    end
+    --  local ts_select = require("nvim-treesitter-textobjects.select")
+    --  for _, obj in ipairs({
+    --    { key = "af", query = "@function.outer" },
+    --    { key = "if", query = "@function.inner" },
+    --    { key = "ac", query = "@class.outer" },
+    --    { key = "ic", query = "@class.inner" },
+    --    { key = "ab", query = "@block.outer" },
+    --    { key = "ib", query = "@block.inner" },
+    --    { key = "al", query = "@loop.outer" },
+    --    { key = "il", query = "@loop.inner" },
+    --    { key = "ai", query = "@conditional.outer" },
+    --    { key = "ii", query = "@conditional.inner" },
+    --    { key = "ap", query = "@parameter.outer" },
+    --    { key = "ip", query = "@parameter.inner" },
+    --  }) do
+    --    vim.keymap.set({ "x", "o" }, obj.key, function()
+    --      ts_select.select_textobject(obj.query, "textobjects")
+    --    end, { desc = "Select " .. obj.query })
+    --  end
   end,
 }
