@@ -38,7 +38,16 @@ return {
     })
 
     -- LSP 启动
-    for _, server in ipairs({ "emmylua_ls", "vtsls", "html", "emmet_language_server", "gopls", "pyright", "clangd", "jsonls" }) do
+    for _, server in ipairs({
+      "emmylua_ls",
+      "vtsls",
+      "html",
+      "emmet_language_server",
+      "gopls",
+      "pyright",
+      "clangd",
+      "jsonls",
+    }) do
       vim.lsp.enable(server)
     end
 
@@ -52,7 +61,10 @@ return {
             { fileMatch = { "*.json", "*.jsonc" }, url = "https://json.schemastore.org/package.json" },
             { fileMatch = { "tsconfig*.json" }, url = "https://json.schemastore.org/tsconfig.json" },
             { fileMatch = { ".eslintrc.json" }, url = "https://json.schemastore.org/eslintrc.json" },
-            { fileMatch = { ".prettierrc", "prettier.config.*" }, url = "https://json.schemastore.org/prettierrc.json" },
+            {
+              fileMatch = { ".prettierrc", "prettier.config.*" },
+              url = "https://json.schemastore.org/prettierrc.json",
+            },
             { fileMatch = { "*.code-workspace" }, url = "https://json.schemastore.org/workspace.json" },
           },
         },
