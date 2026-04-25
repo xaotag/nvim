@@ -1,7 +1,7 @@
 return {
   "mrcjkb/rustaceanvim",
-  version = "^5",
-  ft = { "rust" },
+  version = "^9",
+  lazy = false,
   config = function()
     vim.g.rustaceanvim = {
       server = {
