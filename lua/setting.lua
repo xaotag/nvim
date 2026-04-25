@@ -19,8 +19,9 @@ vim.opt.shortmess:append("cI")
 -- Neovim 0.12: 启用 inlay hints
 vim.lsp.inlay_hint.enable(true)
 
--- Neovim 0.12: 补全菜单边框
+-- Neovim 0.12: 补全菜单边框与最大宽度
 vim.opt.pumborder = "rounded"
+vim.opt.pummaxwidth = 60
 vim.opt.completeopt = "menu,menuone,noselect"
 
 -- 全局 UI 边框配置
