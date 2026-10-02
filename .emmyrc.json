@@ -1,0 +1,11 @@
+{
+  "workspace": {
+    "library": [
+      "$VIMRUNTIME",
+      "~/.local/share/nvim/lazy/lazy.nvim/lua"
+    ]
+  },
+  "diagnostics": {
+    "globals": ["vim"]
+  }
+}
